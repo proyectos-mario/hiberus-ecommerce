@@ -1,13 +1,4 @@
-CREATE USER ecommercebill;
-ALTER USER ecommercebill WITH PASSWORD 'ecommercebill';
-CREATE DATABASE ecommercebillbd WITH OWNER = ecommercebill ;
-
-
 CREATE SCHEMA ecommercebill AUTHORIZATION ecommercebill;
-
-
-
-
 CREATE TABLE ecommercebill.product
 (
     product_id integer NOT NULL,
@@ -17,4 +8,8 @@ CREATE TABLE ecommercebill.product
 
 insert into ecommercebill.product values(1,'Alpina Milk');
 insert into ecommercebill.product values(2,'Brisa Water');
+insert into ecommercebill.product values(3,'Cocacola');
+insert into ecommercebill.product values(4,'Pepsi');
+insert into ecommercebill.product values(5,'Alpina Cheese');
+insert into ecommercebill.product values(6,'Brothers Chicken');
 

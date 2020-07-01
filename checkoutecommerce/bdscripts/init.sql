@@ -1,14 +1,4 @@
----conectarse con admin postgresq
-CREATE USER ecommerce;
-ALTER USER ecommerce WITH PASSWORD 'ecommerce';
-CREATE DATABASE ecommercebd WITH OWNER = ecommerce ;
-
-
 CREATE SCHEMA ecommerce AUTHORIZATION ecommerce;
-
-
-
-
 CREATE TABLE ecommerce.client
 (
     client_id integer NOT NULL,
@@ -18,7 +8,9 @@ CREATE TABLE ecommerce.client
 	CONSTRAINT client_id_pkey PRIMARY KEY (client_id),
 	CONSTRAINT client_phone_number_uk UNIQUE (phone_number)
 );
-
 insert into ecommerce.client values(1,'Mario Esteban','Ortega Garces','3103096818');
 insert into ecommerce.client values(2,'Pedro Andres','Quintero Vargas','3203086781');
-
+insert into ecommerce.client values(3,'Luis Alejandro','Ruiz Alvarez','3103096814');
+insert into ecommerce.client values(4,'Ivan','Buitrago','3203086751');
+insert into ecommerce.client values(5,'Dario','Gomez','3103096817');
+insert into ecommerce.client values(6,'Alejandro','Muñoz','3203086741');

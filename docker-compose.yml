@@ -1,0 +1,60 @@
+version: "3.2"
+
+services:
+  servicecheckout:
+    image: hiberus/servicecheckout:1.0.0
+    build:
+      context: ./
+      dockerfile: ./Dockerfile_checkout
+    depends_on:
+      - servicecheckoutbd
+    ports: 
+      - "7002:7002" 
+  servicecheckoutbd: 
+    environment: 
+      POSTGRES_PASSWORD: ecommerce
+      POSTGRES_USER: ecommerce
+      POSTGRES_DB: ecommercebd
+    image: postgres
+    volumes:
+    - ./checkoutecommerce/bdscripts/:/docker-entrypoint-initdb.d/
+    ports: 
+      - "6002:5432"
+  servicebill:
+    image: hiberus/servicebill:1.0.0
+    build:
+      context: ./
+      dockerfile: ./Dockerfile_bill
+    depends_on:
+      - servicebillbd
+    ports: 
+      - "7000:7000" 
+  servicebillbd: 
+    environment: 
+      POSTGRES_PASSWORD: ecommercebill
+      POSTGRES_USER: ecommercebill
+      POSTGRES_DB: ecommercebillbd
+    image: postgres
+    volumes:
+    - ./billecommerce/bdscripts/:/docker-entrypoint-initdb.d/
+    ports: 
+      - "6000:5432"
+  servicelogistic:
+    image: hiberus/servicelogistic:1.0.0
+    build:
+      context: ./
+      dockerfile: ./Dockerfile_logistic
+    depends_on:
+      - servicelogisticbd
+    ports: 
+      - "7001:7001" 
+  servicelogisticbd: 
+    environment: 
+      POSTGRES_PASSWORD: ecommercelogistic
+      POSTGRES_USER: ecommercelogistic
+      POSTGRES_DB: ecommercelogisticbd
+    image: postgres
+    volumes:
+    - ./logisticecommerce/bdscripts/:/docker-entrypoint-initdb.d/
+    ports: 
+      - "6001:5432"    

@@ -5,7 +5,7 @@ package com.hiberus.checkoutecommerce.enums;
  *
  */
 public enum APIEnum {
-	BILL_API("http://localhost:7000/api/bill"), LOGISTIC_API("http://localhost:7001/api/logistic");
+	BILL_API("http://servicebill:7000/api/bill"), LOGISTIC_API("http://servicelogistic:7001/api/logistic");
 
 	private String urlApi;
 
