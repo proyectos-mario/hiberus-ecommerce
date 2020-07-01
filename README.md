@@ -19,12 +19,12 @@ I have used this technologies and tools:
 
  I have Created six Microservices:
 
-1) `CheckOutService` : (./checkoutecommerce folder): This service begin the process and call Bill service and Logistic service
-2) `CheckOutService Database` : This services is a postgres database that include Clients info
-3) `BillService`(./billecommerce folder): This service receive Date, ClientId, Products info and get sum of products values
-4) `BillService Database` : This services is another postgres database that include products info. (This database is diferent that Checkout Database)
-5) `Logisticservice` (./logisticecommerce): This services is responsible of generation of sent order. It create a number Id and return this value in an OutLogisticVO object, also create a register in Order table with the Sent order info.
-6) `LogisticService Database`: This services is another postgres database that include order info. (This database is diferent that Checkout Database) and generate an Order Id with ecommercelogistic.order_id_seq database secuence
+- **CheckOutService** : (./checkoutecommerce folder): This service begin the process and call Bill service and Logistic service
+- `CheckOutService Database` : This services is a postgres database that include Clients info
+- `BillService`(./billecommerce folder): This service receive Date, ClientId, Products info and get sum of products values
+- `BillService Database` : This services is another postgres database that include products info. (This database is diferent that Checkout Database)
+- `Logisticservice` (./logisticecommerce): This services is responsible of generation of sent order. It create a number Id and return this value in an OutLogisticVO object, also create a register in Order table with the Sent order info.
+- `LogisticService Database`: This services is another postgres database that include order info. (This database is diferent that Checkout Database) and generate an Order Id with ecommercelogistic.order_id_seq database secuence
 
 
 
