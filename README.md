@@ -88,8 +88,8 @@ In this project is used 6 containers isolated and connected to docker network pr
 This project connect with database elements like products or clientes and get elemenets like orders, so I build 3 services to help you to get data to test this service. This get rest services are:
 
 + [http://localhost:7002/api/getClients](http://servicecheckout:7002/api/getClients). Clients List
-+ [http://servicebill:7000/api/getProducts](http://servicebill:7000/api/getProducts). Products List
-+ [http://servicelogistic:7001/api/getOrders](http://servicelogistic:7001/api/getOrders). Orders List
++ [http://localhost:7000/api/getProducts](http://localhost:7000/api/getProducts). Products List
++ [http://localhost:7001/api/getOrders](http://localhost:7001/api/getOrders). Orders List
 
 
 ## CheckOut Service
