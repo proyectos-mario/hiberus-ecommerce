@@ -21,7 +21,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import voecommercecom.hiberus.commons.vo.OrderVO;
+import voecommercecom.hiberus.commons.vo.CheckOutVO;
+import voecommercecom.hiberus.commons.vo.GenerateOrderVO;
 import voecommercecom.hiberus.commons.vo.OutBillVO;
 import voecommercecom.hiberus.commons.vo.OutCheckOutVO;
 import voecommercecom.hiberus.commons.vo.OutLogisticVO;
@@ -56,7 +57,7 @@ public class CheckOutResource {
 	 * @return
 	 */
 	@GetMapping(value = "/getClients")
-	@ApiOperation(value = "List Clients", notes = "Service for list clients,  With this service you can get all clients for testing")
+	@ApiOperation(value = "List Clients", notes = "List clients service,  With this service you can get all clients for testing.")
 	@ApiResponses(value = { @ApiResponse(code = 201, message = "Clients found"),
 			@ApiResponse(code = 404, message = "Clients list not found") })
 	public ResponseEntity<List<Client>> getClients() {
@@ -66,18 +67,18 @@ public class CheckOutResource {
 	}
 	
 	@PostMapping(value = "/checkout")
-	@ApiOperation(value = "Inicializar CheckOut", notes = "Initialiser service of CheckOut,With this service you can run checkout process")
+	@ApiOperation(value = "Initialize CheckOut", notes = "Initialiser service of CheckOut,With this service you can run checkout process, you receive checkout object and get response of execution of the process")
 	@ApiResponses(value = { @ApiResponse(code = 201, message = "Proccess executed correctly"),
 			@ApiResponse(code = 400, message = "Error in the process") })
-	public ResponseEntity<OutCheckOutVO> checkOutProcess(@RequestBody OrderVO orderVO) {
+	public ResponseEntity<OutCheckOutVO> checkOutProcess(@RequestBody CheckOutVO checkout) {
 		OutCheckOutVO checkOut = new OutCheckOutVO();
 		
 		
 		
 		try {
 			
-			if(orderVO==null||orderVO.getClientId()==null||!existClient(orderVO.getClientId())) {
-				String message="Client doesn´t exist with Id="+(orderVO!=null?""+orderVO.getClientId():null);
+			if(checkout==null||checkout.getClientId()==null||!existClient(checkout.getClientId())) {
+				String message="Client doesn´t exist with Id="+(checkout!=null?""+checkout.getClientId():null);
 				LogManager.getLogger(this.getClass().getName()).error(message);
 				throw new Exception(message);
 			}
@@ -87,15 +88,17 @@ public class CheckOutResource {
 			 * In this part The CheckOut service call Bill service and get a response
 			 */
 
-			OutBillVO billResponse = restTemplate.postForObject(APIEnum.BILL_API.getUrlApi(), orderVO, OutBillVO.class);
+			OutBillVO billResponse = restTemplate.postForObject(APIEnum.BILL_API.getUrlApi(), checkout, OutBillVO.class);
 
 ///////////////////---------------------------------------------------------------
 
 			/*
 			 * In this part The CheckOut service call Logistic service and get a response
 			 */
-
-			OutLogisticVO logisticResponse = restTemplate.postForObject(APIEnum.LOGISTIC_API.getUrlApi(), orderVO,
+			GenerateOrderVO go= new GenerateOrderVO();
+			go.setCheckOut(checkout);
+			go.setSum(billResponse.getSum());
+			OutLogisticVO logisticResponse = restTemplate.postForObject(APIEnum.LOGISTIC_API.getUrlApi(), go,
 					OutLogisticVO.class);
 
 ///////////////////// ---------------------------------------------------------------

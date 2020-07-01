@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-public class OrderVO implements Serializable {
+public class CheckOutVO implements Serializable {
 
 	/**
 	 * 

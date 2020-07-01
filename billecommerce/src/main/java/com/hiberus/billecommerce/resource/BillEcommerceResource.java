@@ -19,7 +19,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import voecommercecom.hiberus.commons.vo.OrderVO;
+import voecommercecom.hiberus.commons.vo.CheckOutVO;
 import voecommercecom.hiberus.commons.vo.OutBillVO;
 import voecommercecom.hiberus.commons.vo.ProductVO;
 
@@ -44,7 +44,7 @@ public class BillEcommerceResource {
 	 * @return
 	 */
 	@GetMapping(value = "/getProducts")
-	@ApiOperation(value = "List Products", notes = "Service for list products,  With this service you can get all products for testing")
+	@ApiOperation(value = "List Products", notes = "List products service,  With this service you can get all products for testing")
 	@ApiResponses(value = { @ApiResponse(code = 201, message = "Products found"),
 			@ApiResponse(code = 404, message = "Products list not found") })
 	public ResponseEntity<List<Product>> getClients() {
@@ -59,16 +59,16 @@ public class BillEcommerceResource {
 	}
 
 	/**
-	 * Service for bill the order and
+	 * Service that receive order and
 	 * return the sum of values
 	 * @param orderVO
 	 * @return
 	 */
 	@PostMapping(value = "/bill")
-	@ApiOperation(value = "Inicializar bill", notes = "Initialiser service of bill")
+	@ApiOperation(value = "Initialize bill", notes = "Initialiser service of bill, It receive CheckOut service with products and get response of service with the sum of products values")
 	@ApiResponses(value = { @ApiResponse(code = 201, message = "Proccess executed correctly"),
 			@ApiResponse(code = 400, message = "Error in the process") })
-	public ResponseEntity<OutBillVO> billProcess(@RequestBody OrderVO orderVO) {
+	public ResponseEntity<OutBillVO> billProcess(@RequestBody CheckOutVO orderVO) {
 		OutBillVO billResponse = new OutBillVO();
 		try {
 			
