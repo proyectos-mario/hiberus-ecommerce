@@ -95,7 +95,7 @@ This project connect with database elements like products or clientes and get el
 ## CheckOut Service
 
 
-First, you should run post service: http://localhost:7002/api/checkout and put in the body something like this:
+First, you should run this post service in postman software or another rest tool for http://localhost:7002/api/checkout and put in the body something like this:
 
 ```json
 {
@@ -116,4 +116,23 @@ First, you should run post service: http://localhost:7002/api/checkout and put i
   ]
 } 
 ```
+When this process is executed you get a response like this:
 
+
+```json
+{
+    "procesoOk": true,
+    "mensaje": "Correct CheckOut",
+    "logisticOut": {
+        "procesoOk": true,
+        "mensaje": "Logistic out ok",
+        "numberOrder": 1
+    },
+    "billOut": {
+        "procesoOk": true,
+        "mensaje": "Bill process pass ok",
+        "sum": 801.9000000000001
+    }
+}
+```
+As you can see this json return a procesoOk=true if all procedures are ok also return the bill response with billOut object and logistic response with logisticOut object. If the process fail the procesoOk = false.
