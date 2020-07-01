@@ -57,6 +57,51 @@ Once the project had been installed,  This project generate swagger documentatio
 - [http://localhost:7000/swagger-ui.html](http://localhost:7000/swagger-ui.html). Billing documentation
 - [http://localhost:7001/swagger-ui.html](http://localhost:7001/swagger-ui.html). Logistic documentation
 
+# How this work
+
+## localhost urls (Explain why?)
+
+That how you can see, I use localhost for all services. That is because willfully, I expose API in localmachine for testing purposes for API services and database services. It can see in docker-compose file like this
+
+```
+...
+ports: 
+      - "7000:7000" 
+...
+```
+With this you can get rest services or connect local to databases
+
+## Abstract design
+
+
+
+## CheckOut Service
+
+
+First, you should run post service: http://localhost:7002/api/checkout and put in the body something like this:
+
+```json
+...
+{
+  "clientId": 1,
+  "date": "2020-07-01T00:19:43.509Z",
+  "direction": "Carrera 11 # 140 -52",
+  "products": [
+    {
+      "cost": 100.5,
+      "id": 1,
+      "quantity": 2
+    },
+    {
+      "cost": 200.3,
+      "id": 2,
+      "quantity": 3
+    }
+  ]
+} 
+...
+```
+
 ```js
 import React from "react";
 import DatePicker from "react-datepicker";
