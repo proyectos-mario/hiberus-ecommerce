@@ -61,7 +61,7 @@ Once the project had been installed,  This project generate swagger documentatio
 
 ## localhost urls (Explain why?)
 
-That how you can see, I use localhost for all services. That is because willfully, I expose API in localmachine for testing purposes for API services and database services. It can see in docker-compose file like this
+That how you can see, I use localhost for all services. That is because willfully, I expose APIs in localmachine for testing purposes for API services and database services, but internally microservices use its own network for connect its containers  thanks to Docker and Docker-compose technology. A easy test to see it,  is delete expose port in docker-compose file. It can see in docker-compose file like this
 
 ```
 ...
