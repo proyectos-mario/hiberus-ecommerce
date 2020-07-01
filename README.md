@@ -53,9 +53,9 @@ docker-compose rm -f
 
 Once the project had been installed,  This project generate swagger documentation in this links:
 
-- [http://localhost:7002/swagger-ui.html](http://localhost:7002/swagger-ui.html). CheckOut documentation
-- [http://localhost:7000/swagger-ui.html](http://localhost:7000/swagger-ui.html). Billing documentation
-- [http://localhost:7001/swagger-ui.html](http://localhost:7001/swagger-ui.html). Logistic documentation
+- [http://localhost:7002/swagger-ui.html](http://localhost:7002/swagger-ui.html){:target="_blank"}. CheckOut documentation
+- [http://localhost:7000/swagger-ui.html](http://localhost:7000/swagger-ui.html){:target="_blank"}. Billing documentation
+- [http://localhost:7001/swagger-ui.html](http://localhost:7001/swagger-ui.html){:target="_blank"}. Logistic documentation
 
 ```js
 import React from "react";
