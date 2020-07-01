@@ -1,20 +1,21 @@
 # Ecommerce application for Hiberus
 
-Welcome to E-commerce simulate for hiberus Test for Java Microservices.
+Welcome to e-commerce simulate for hiberus Test for Java Microservices.
 
-## technologies and tools:
+## Technologies and tools:
 
 - Java version "1.8.0_241"
+- Spring tools suite 4 (IDE)
 - Spring boot 2.3.1
+- Spring Data
 - Maven
 - Docker version 19.03.8
 - Docker-compose version 1.25.5
 - Swagger 2.7.0
-- Spring tools suite 4
 - User SO: Windows 10 Pro
-- Git version 2.26.0.windows.1
-- Spring Data
-- Postgres Data base
+- Git version 2.26.0
+- Postgres Database
+- Postman
 
 
  ## This project has six Microservices:
@@ -48,8 +49,13 @@ If you need to stop the process execute:
 docker-compose rm -f
 ```
 
+## Swagger Documentation
 
-You’ll need to install React and PropTypes separately since those dependencies aren’t included in the package. If you need to use a locale other than the default en-US, you'll also need to import that into your project from date-fns (see Localization section below). Below is a simple example of how to use the Datepicker in a React view. You will also need to require the CSS file from this package (or provide your own). The example below shows how to include the CSS from this package if your build system supports requiring CSS files (Webpack is one that does).
+Once the project had been installed,  This project generate swagger documentation in this links:
+
+- [http://localhost:7002/swagger-ui.html](http://localhost:7002/swagger-ui.html). CheckOut documentation
+- [http://localhost:7000/swagger-ui.html](http://localhost:7000/swagger-ui.html). Billing documentation
+- [http://localhost:7001/swagger-ui.html](http://localhost:7001/swagger-ui.html). Logistic documentation
 
 ```js
 import React from "react";
