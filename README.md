@@ -67,12 +67,6 @@ Execute docker-compose
 docker-compose up --build -d
 ```
 
-If you need to stop the process execute:
-
-```
-docker-compose rm -f
-```
-
 You can check if the 6 services are up with this docker command:
 
 ```
@@ -81,6 +75,13 @@ docker ps
 And you should be see something like this:
 
 ![alt text](https://github.com/proyectos-mario/hiberus-ecommerce/blob/master/images/dockerps.png?raw=true)
+
+If you need to stop the process execute:
+
+```
+docker-compose rm -f
+```
+
 ## Swagger Documentation
 
 Once the project has been installed,  This project generate swagger documentation in this links:
