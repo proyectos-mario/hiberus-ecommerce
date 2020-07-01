@@ -40,7 +40,7 @@ git clone git@github.com:proyectos-mario/hiberus-ecommerce.git
 Execute docker-compose
 
 ```
-docker-compose up --build
+docker-compose up --build -d
 ```
 
 If you need to stop the process execute:
@@ -59,9 +59,9 @@ Once the project had been installed,  This project generate swagger documentatio
 
 # How this work
 
-## localhost urls (Explain why?)
+## localhost urls (Why?)
 
-That how you can see, I use localhost for all services. That is because willfully, I expose APIs in localmachine for testing purposes for API services and database services, but internally microservices use its own network for connect its containers  thanks to Docker and Docker-compose technology. A easy test to see it,  is delete expose port in docker-compose file. It can see in docker-compose file like this
+That you can see, I use localhost for all services. That is because willfully, I expose APIs in localmachine for testing purposes for API services and database services, but internally microservices use its own network for connect its containers  thanks to Docker and Docker-compose technology. A easy test to see it,  is delete expose port in docker-compose file. It can see in docker-compose file like this
 
 ```
 ...
@@ -71,9 +71,26 @@ ports:
 ```
 With this you can get rest services or connect local to databases
 
-## Abstract design
+## Design
 
 ![alt text](https://github.com/proyectos-mario/hiberus-ecommerce/blob/master/images/design.png?raw=true)
+
+In this design , I create a principal service called **checkoutservice**, this servive bengin the process and later call **billservice** that compute the sum of product values per quantity. Later Checkput process call **logisticservice** that save in order database table the sum of billservice, address info, order date, client id, generation date (Date of execution of service) and a number or sent order, this sent order number is given to database sequence called order_id_seq. This service return a OutLogisticVO object to **checkoutservice** and later this service return a OutCheckOutVO object and finish the process.
+
+## Arquitecture
+
+In this project is used 6 containers isolated and connected to docker network provided and configured for docker-compose technology. I exposed ports to localmachine for testing purposes.
+
+# Start to work!!!
+
+## Before to start
+
+This project connect with database elements like products or clientes and get elemenets like orders, so I build 3 services to help you to get data to test this service. This get rest services are:
+
++ [http://localhost:7002/api/getClients](http://servicecheckout:7002/api/getClients). Clients List
++ [http://servicebill:7000/api/getProducts](http://servicebill:7000/api/getProducts). Products List
++ [http://servicelogistic:7001/api/getOrders](http://servicelogistic:7001/api/getOrders). Orders List
+
 
 ## CheckOut Service
 
@@ -81,7 +98,6 @@ With this you can get rest services or connect local to databases
 First, you should run post service: http://localhost:7002/api/checkout and put in the body something like this:
 
 ```json
-...
 {
   "clientId": 1,
   "date": "2020-07-01T00:19:43.509Z",
@@ -99,158 +115,5 @@ First, you should run post service: http://localhost:7002/api/checkout and put i
     }
   ]
 } 
-...
 ```
 
-```js
-import React from "react";
-import DatePicker from "react-datepicker";
-
-import "react-datepicker/dist/react-datepicker.css";
-
-// CSS Modules, react-datepicker-cssmodules.css
-// import 'react-datepicker/dist/react-datepicker-cssmodules.css';
-
-class Example extends React.Component {
-  state = {
-    startDate: new Date()
-  };
-
-  handleChange = date => {
-    this.setState({
-      startDate: date
-    });
-  };
-
-  render() {
-    return (
-      <DatePicker
-        selected={this.state.startDate}
-        onChange={this.handleChange}
-      />
-    );
-  }
-}
-```
-
-## Configuration
-
-The most basic use of the DatePicker can be described with:
-
-```js
-<DatePicker selected={this.state.date} onChange={this.handleChange} />
-```
-
-You can use `onSelect` event handler which fires each time some calendar date has been selected
-
-```js
-<DatePicker
-  selected={this.state.date}
-  onSelect={this.handleSelect} //when day is clicked
-  onChange={this.handleChange} //only when value has changed
-/>
-```
-
-`onClickOutside` handler may be useful to close datepicker in `inline` mode
-
-See [here](https://github.com/Hacker0x01/react-datepicker/blob/master/docs/datepicker.md) for a full list of props that may be passed to the component. Examples are given on the [main website](https://hacker0x01.github.io/react-datepicker).
-
-### Time picker
-
-You can also include a time picker by adding the showTimeSelect prop
-
-```js
-<DatePicker
-  selected={this.state.date}
-  onChange={this.handleChange}
-  showTimeSelect
-  dateFormat="Pp"
-/>
-```
-
-Times will be displayed at 30-minute intervals by default (default configurable via timeIntervals prop)
-
-More examples of how to use the time picker are given on the [main website](https://hacker0x01.github.io/react-datepicker)
-
-### Localization
-
-The date picker relies on [date-fns internationalization](https://date-fns.org/v2.0.0-alpha.18/docs/I18n) to localize its display components. By default, the date picker will use the locale globally set, which is English. Provided are 3 helper methods to set the locale:
-
-- **registerLocale** (string, object): loads an imported locale object from date-fns
-- **setDefaultLocale** (string): sets a registered locale as the default for all datepicker instances
-- **getDefaultLocale**: returns a string showing the currently set default locale
-
-```js
-import { registerLocale, setDefaultLocale } from  "react-datepicker";
-import es from 'date-fns/locale/es';
-registerLocale('es', es)
-
-<DatePicker
-  locale="es"
-/>
-```
-
-Locales can be changed in the following way:
-
-- **Globally** - `setDefaultLocale('es');`
-
-## Compatibility
-
-### React
-
-We're always trying to stay compatible with the latest version of React. We can't support all older versions of React.
-
-Latest compatible versions:
-
-- React 16 or newer: React-datepicker v2.9.4 and newer
-- React 15.5: React-datepicker v2.9.3
-- React 15.4.1: needs React-datepicker v0.40.0, newer won't work (due to react-onclickoutside dependencies)
-- React 0.14 or newer: All above React-datepicker v0.13.0
-- React 0.13: React-datepicker v0.13.0
-- pre React 0.13: React-datepicker v0.6.2
-
-### Moment.js
-
-Up until version 1.8.0, this package was using Moment.js. Starting v2.0.0, we switched to using `date-fns`, which uses native Date objects, to reduce the size of the package. If you're switching from 1.8.0 to 2.0.0 or higher, please see the updated example above of check out the [examples site](https://reactdatepicker.com) for up to date examples.
-
-### Browser Support
-
-The date picker is compatible with the latest versions of Chrome, Firefox, and IE10+.
-
-Unfortunately, it is difficult to support legacy browsers while maintaining our ability to develop new features in the future. For IE9 support, it is known that the [classlist polyfill](https://www.npmjs.com/package/classlist-polyfill) is needed, but this may change or break at any point in the future.
-
-## Local Development
-
-The `master` branch contains the latest version of the Datepicker component.
-
-To begin local development:
-
-1. `yarn install`
-2. `yarn build-dev`
-3. `yarn start`
-
-The last step starts documentation app as a simple webserver on http://localhost:3000.
-
-You can run `yarn test` to execute the test suite and linters. To help you develop the component we’ve set up some tests that cover the basic functionality (can be found in `/tests`). Even though we’re big fans of testing, this only covers a small piece of the component. We highly recommend you add tests when you’re adding new functionality.
-
-### The examples
-
-The examples are hosted within the docs folder and are ran in the simple app that loads the Datepicker. To extend the examples with a new example, you can simply duplicate one of the existing examples and change the unique properties of your example.
-
-## Accessibility
-
-### Keyboard support
-
-- _Left_: Move to the previous day.
-- _Right_: Move to the next day.
-- _Up_: Move to the previous week.
-- _Down_: Move to the next week.
-- _PgUp_: Move to the previous month.
-- _PgDn_: Move to the next month.
-- _Home_: Move to the previous year.
-- _End_: Move to the next year.
-- _Enter/Esc/Tab_: close the calendar. (Enter & Esc calls preventDefault)
-
-## License
-
-Copyright (c) 2019 HackerOne Inc. and individual contributors. Licensed under MIT license, see [LICENSE](LICENSE) for the full license.
