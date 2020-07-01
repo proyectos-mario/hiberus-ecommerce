@@ -89,7 +89,7 @@ This project connect with database elements like products or clientes and get el
 
 + [http://localhost:7002/api/getClients](http://localhost:7002/api/getClients). Client List
 + [http://localhost:7000/api/getProducts](http://localhost:7000/api/getProducts). Product List
-+ [http://localhost:7001/api/getOrders](http://localhost:7001/api/getOrders). Order List
++ [http://localhost:7001/api/getOrders](http://localhost:7001/api/getOrders). Order List (This elemens show the result of executions of entire process)
 
 
 ## CheckOut Service
