@@ -11,7 +11,7 @@ public class OutLogisticVO implements Serializable {
 	
 	private Boolean procesoOk;
 	
-	private String mensaje;
+	private String message;
 	
 	private Integer numberOrder;
 
@@ -23,12 +23,12 @@ public class OutLogisticVO implements Serializable {
 		this.procesoOk = procesoOk;
 	}
 
-	public String getMensaje() {
-		return mensaje;
+	public String getMessage() {
+		return message;
 	}
 
-	public void setMensaje(String mensaje) {
-		this.mensaje = mensaje;
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
 	public Integer getNumberOrder() {

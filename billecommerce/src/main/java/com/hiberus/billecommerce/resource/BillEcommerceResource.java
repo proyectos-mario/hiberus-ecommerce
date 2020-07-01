@@ -91,7 +91,7 @@ public class BillEcommerceResource {
 					sum += product.getCost()*product.getQuantity();
 				}
 				billResponse.setSum(sum);
-				billResponse.setMensaje("Bill process pass ok");
+				billResponse.setMessage("Bill process pass ok");
 				billResponse.setProcesoOk(true);
 				LogManager.getLogger(this.getClass().getName()).info("Bill sum process Ok----> Sum=" + sum);
 			} else {
@@ -100,7 +100,7 @@ public class BillEcommerceResource {
 			}
 			return new ResponseEntity<>(billResponse, HttpStatus.OK);
 		} catch (Exception e) {
-			billResponse.setMensaje("Bill process fail:"+e.getMessage());
+			billResponse.setMessage("Bill process fail:"+e.getMessage());
 			billResponse.setProcesoOk(false);
 			LogManager.getLogger(this.getClass().getName()).error("Bill sum process error");
 			return new ResponseEntity<>(billResponse, HttpStatus.BAD_REQUEST);

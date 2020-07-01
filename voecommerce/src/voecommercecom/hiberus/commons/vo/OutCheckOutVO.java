@@ -11,7 +11,7 @@ public class OutCheckOutVO implements Serializable {
 	
 	private Boolean procesoOk;
 	
-	private String mensaje;
+	private String message;
 	
 	private OutLogisticVO logisticOut;
 	
@@ -41,12 +41,12 @@ public class OutCheckOutVO implements Serializable {
 		this.procesoOk = procesoOk;
 	}
 
-	public String getMensaje() {
-		return mensaje;
+	public String getMessage() {
+		return message;
 	}
 
-	public void setMensaje(String mensaje) {
-		this.mensaje = mensaje;
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
 }

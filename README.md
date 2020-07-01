@@ -4,6 +4,8 @@ Welcome to e-commerce simulate for hiberus Test for Java Microservices.
 
 ## Technologies and tools:
 
+I use this technologies for build the project because Spring boot and docker are one of the best solutions for microservices system, because offer well support,well security also Java has a lot of experienced in applications and docker works very well with containers and it can be adapted in more complex architecture using tools like kuberentes for charge balanced in services.
+
 - Java version "1.8.0_241"
 - Spring tools suite 4 (IDE)
 - Spring boot 2.3.1
@@ -73,7 +75,7 @@ docker-compose rm -f
 
 ## Swagger Documentation
 
-Once the project had been installed,  This project generate swagger documentation in this links:
+Once the project has been installed,  This project generate swagger documentation in this links:
 
 - [http://localhost:7002/swagger-ui.html](http://localhost:7002/swagger-ui.html). CheckOut documentation
 - [http://localhost:7000/swagger-ui.html](http://localhost:7000/swagger-ui.html). Billing documentation
@@ -81,9 +83,9 @@ Once the project had been installed,  This project generate swagger documentatio
 
 # How this work
 
-## localhost urls (Why?)
+## localhost public urls (Why?)
 
-That you can see, I use localhost for all services. That is because willfully, I expose APIs in localmachine for testing purposes for API services and database services, but internally microservices use its own network for connect its containers  thanks to Docker and Docker-compose technology. A easy test to see it,  is delete expose port in docker-compose file. It can see in docker-compose file like this
+That you can see, I use localhost for all services. That is because willfully, I expose APIs in localmachine for testing purposes for API services and database services, but internally microservices use its own network for connect its containers  thanks to Docker and Docker-compose technology. A easy test to see it,  is delete expose port in docker-compose file and with this you can put private one or variuos microservices. It can see in docker-compose file like this
 
 ```
 ...
@@ -134,19 +136,19 @@ When this process is executed you get a response like this:
 ```json
 {
     "procesoOk": true,
-    "mensaje": "Correct CheckOut",
+    "message": "Correct CheckOut",
     "logisticOut": {
         "procesoOk": true,
-        "mensaje": "Logistic out ok",
+        "message": "Logistic out ok",
         "numberOrder": 1
     },
     "billOut": {
         "procesoOk": true,
-        "mensaje": "Bill process pass ok",
+        "message": "Bill process pass ok",
         "sum": 801.9000000000001
     }
 }
 ```
-As you can see this json return a procesoOk=true if all procedures are ok also return the bill response with billOut object and logistic response with logisticOut object. If the process fail the procesoOk = false.
+As you can see this json return a procesoOk=true if all procedures are ok also return the bill response with billOut object and logistic response with logisticOut object. If the process fail the procesoOk = false and show message error in "message"
 
 

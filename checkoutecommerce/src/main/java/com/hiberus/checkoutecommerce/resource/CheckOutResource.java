@@ -103,19 +103,19 @@ public class CheckOutResource {
 
 ///////////////////// ---------------------------------------------------------------
 
-			LogManager.getLogger(this.getClass().getName()).info("Bill response:" + billResponse.getMensaje());
-			LogManager.getLogger(this.getClass().getName()).info("Logistic response:" + logisticResponse.getMensaje());
+			LogManager.getLogger(this.getClass().getName()).info("Bill response:" + billResponse.getMessage());
+			LogManager.getLogger(this.getClass().getName()).info("Logistic response:" + logisticResponse.getMessage());
 
 			/* CheckOut Ok */
 
-			checkOut.setMensaje("Correct CheckOut");
+			checkOut.setMessage("Correct CheckOut");
 			checkOut.setBillOut(billResponse);
 			checkOut.setLogisticOut(logisticResponse);
 			checkOut.setProcesoOk(true);
 
 			return new ResponseEntity<>(checkOut, HttpStatus.OK);
 		} catch (Exception e) {
-			checkOut.setMensaje("CheckOut process fail:" + e.getMessage());
+			checkOut.setMessage("CheckOut process fail:" + e.getMessage());
 			checkOut.setProcesoOk(false);
 			LogManager.getLogger(this.getClass().getName()).error("Check out process fail:"+ e.getMessage());
 			return new ResponseEntity<>(checkOut, HttpStatus.BAD_REQUEST);

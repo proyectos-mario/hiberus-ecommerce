@@ -64,13 +64,13 @@ public class LogisticEcommerceResource {
 		
 		logisticService.saveOrder(checkOutVO,numberOrder);
 		
-		logisticOut.setMensaje("Logistic out ok");
+		logisticOut.setMessage("Logistic out ok");
 		logisticOut.setNumberOrder(numberOrder);
 		logisticOut.setProcesoOk(true);
 		
 		return new ResponseEntity<>(logisticOut, HttpStatus.OK);
 		} catch (Exception e) {
-			logisticOut.setMensaje("Logistic process fail:" + e.getMessage());
+			logisticOut.setMessage("Logistic process fail:" + e.getMessage());
 			logisticOut.setProcesoOk(false);
 			LogManager.getLogger(this.getClass().getName()).error("Logistic process fail:"+ e.getMessage());
 			return new ResponseEntity<>(logisticOut, HttpStatus.BAD_REQUEST);
