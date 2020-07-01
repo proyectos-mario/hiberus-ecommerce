@@ -1,5 +1,33 @@
 # Ecommerce application for Hiberus
 
+Welcome to E-commerce simulate for hiberus Test for Java Microservices.
+
+I have used this technologies and tools:
+
+- Java version "1.8.0_241"
+- Spring boot 2.3.1
+- Maven
+- Docker version 19.03.8
+- Docker-compose version 1.25.5
+- Swagger 2.7.0
+- Spring tools suite 4
+- User SO: Windows 10 Pro
+- Git version 2.26.0.windows.1
+- Spring Data
+- Postgres Data base
+
+
+ I have Created six Microservices:
+
+1) `CheckOutService` : (./checkoutecommerce folder): This service begin the process and call Bill service and Logistic service
+2) `CheckOutService Database` : This services is a postgres database that include Clients info
+3) `BillService`(./billecommerce folder): This service receive Date, ClientId, Products info and get sum of products values
+4) `BillService Database` : This services is another postgres database that include products info. (This database is diferent that Checkout Database)
+5) `Logisticservice` (./logisticecommerce): This services is responsible of generation of sent order. It create a number Id and return this value in an OutLogisticVO object, also create a register in Order table with the Sent order info.
+6) `LogisticService Database`: This services is another postgres database that include order info. (This database is diferent that Checkout Database) and generate an Order Id with ecommercelogistic.order_id_seq database secuence
+
+
+
 ## Installation
 
 The package can be installed via docker-compose functionality, first donwload the project via github and later execute docker-compose:
@@ -13,6 +41,13 @@ Execute docker-compose
 ```
 docker-compose up --build
 ```
+
+If you need to stop the process execute:
+
+```
+docker-compose rm -f
+```
+
 
 You’ll need to install React and PropTypes separately since those dependencies aren’t included in the package. If you need to use a locale other than the default en-US, you'll also need to import that into your project from date-fns (see Localization section below). Below is a simple example of how to use the Datepicker in a React view. You will also need to require the CSS file from this package (or provide your own). The example below shows how to include the CSS from this package if your build system supports requiring CSS files (Webpack is one that does).
 

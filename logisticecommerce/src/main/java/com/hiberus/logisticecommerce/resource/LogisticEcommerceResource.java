@@ -53,7 +53,7 @@ public class LogisticEcommerceResource {
 	
 	
 	@PostMapping (value = "/logistic")
-	@ApiOperation(value = "Initialize logistic", notes = "Initialiser service of logistic, you receive GenerateOrder object and get response of execution of the process, and save the order history and you can consult it with getOrders service")
+	@ApiOperation(value = "Initialize logistic", notes = "Initialiser service of logistic, It receive GenerateOrder object and get response of execution of the process, and save the order history and you can consult it with getOrders service")
 	@ApiResponses(value = { @ApiResponse(code = 201, message = "Proccess executed correctly"),
 			@ApiResponse(code = 400, message = "Error in the process") })
 	public ResponseEntity<OutLogisticVO> logisticProcess(@RequestBody GenerateOrderVO checkOutVO) {

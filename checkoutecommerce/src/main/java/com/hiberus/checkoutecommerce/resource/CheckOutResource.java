@@ -67,7 +67,7 @@ public class CheckOutResource {
 	}
 	
 	@PostMapping(value = "/checkout")
-	@ApiOperation(value = "Initialize CheckOut", notes = "Initialiser service of CheckOut,With this service you can run checkout process, you receive checkout object and get response of execution of the process")
+	@ApiOperation(value = "Initialize CheckOut", notes = "Initialiser service of CheckOut,With this service you can run checkout process, It receive checkout object and get response of execution of the process")
 	@ApiResponses(value = { @ApiResponse(code = 201, message = "Proccess executed correctly"),
 			@ApiResponse(code = 400, message = "Error in the process") })
 	public ResponseEntity<OutCheckOutVO> checkOutProcess(@RequestBody CheckOutVO checkout) {
