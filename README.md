@@ -2,16 +2,16 @@
 
 ## Installation
 
-The package can be installed via [yarn]git@github.com:proyectos-mario/hiberus-ecommerce.git
+The package can be installed via docker-compose functionality, first donwload the project via github and later execute docker-compose:
 
 ```
-npm install react-datepicker --save
-```
-
-Or via [yarn](https://github.com/yarnpkg/yarn):
+git clone git@github.com:proyectos-mario/hiberus-ecommerce.git
 
 ```
-yarn add react-datepicker
+Execute docker-compose
+
+```
+docker-compose up --build
 ```
 
 You’ll need to install React and PropTypes separately since those dependencies aren’t included in the package. If you need to use a locale other than the default en-US, you'll also need to import that into your project from date-fns (see Localization section below). Below is a simple example of how to use the Datepicker in a React view. You will also need to require the CSS file from this package (or provide your own). The example below shows how to include the CSS from this package if your build system supports requiring CSS files (Webpack is one that does).
