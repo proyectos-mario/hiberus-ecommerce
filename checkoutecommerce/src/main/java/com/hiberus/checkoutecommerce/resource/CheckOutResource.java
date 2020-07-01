@@ -1,13 +1,21 @@
 package com.hiberus.checkoutecommerce.resource;
 
+import java.util.List;
+
+import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+
+import com.hiberus.checkoutecommerce.entities.Client;
+import com.hiberus.checkoutecommerce.enums.APIEnum;
+import com.hiberus.checkoutecommerce.service.CheckOutService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -28,51 +36,87 @@ import voecommercecom.hiberus.commons.vo.OutLogisticVO;
 @RequestMapping("/api/")
 @Api(tags = "CheckOutResource")
 public class CheckOutResource {
+
 	
-	@Autowired 
+	@Autowired
 	private RestTemplate restTemplate;
 	
-	@PostMapping (value = "/checkout")
-	@ApiOperation(value = "Inicializar CheckOut", notes = "Initialiser service of CheckOut")
+	@Autowired
+	private CheckOutService checkOutService;
+
+	
+	
+	private boolean existClient(Integer clientId) {
+		return checkOutService.existClient(clientId);
+	}
+	
+	
+	/**
+	 * With this service you can get all clients for testing
+	 * @return
+	 */
+	@GetMapping(value = "/getClients")
+	@ApiOperation(value = "List Clients", notes = "Service for list clients,  With this service you can get all clients for testing")
+	@ApiResponses(value = { @ApiResponse(code = 201, message = "Clients found"),
+			@ApiResponse(code = 404, message = "Clients list not found") })
+	public ResponseEntity<List<Client>> getClients() {
+		List<Client> clients=this.checkOutService.getClients();
+		return ResponseEntity.ok(clients);
+
+	}
+	
+	@PostMapping(value = "/checkout")
+	@ApiOperation(value = "Inicializar CheckOut", notes = "Initialiser service of CheckOut,With this service you can run checkout process")
 	@ApiResponses(value = { @ApiResponse(code = 201, message = "Proccess executed correctly"),
 			@ApiResponse(code = 400, message = "Error in the process") })
 	public ResponseEntity<OutCheckOutVO> checkOutProcess(@RequestBody OrderVO orderVO) {
+		OutCheckOutVO checkOut = new OutCheckOutVO();
 		
 		
-		/*
-		 * In this part
-		 * The CheckOut service call
-		 * Bill service and get and answer
-		 * */
 		
-		OutBillVO billResponse=restTemplate.postForObject(
-				"http://localhost:7000/api/bill",
-				orderVO,
-				OutBillVO.class);
-		
-		/*
-		 * In this part
-		 * The CheckOut service call
-		 * Logistic service and get and answer
-		 * */
-		
-		OutLogisticVO logisticResponse=restTemplate.postForObject(
-				"http://localhost:7001/api/logistic",
-				orderVO,
-				OutLogisticVO.class);
-		
-		System.out.println("Bill response:"+billResponse.getMensaje());
-		System.out.println("Logistic response:"+logisticResponse.getMensaje());
-		
-		
-		/**/
-		OutCheckOutVO test=new OutCheckOutVO();
-		test.setMensaje("mensaje");
-		test.setBillOut(billResponse);
-		test.setLogisticOut(logisticResponse);
-		test.setProcesoOk(true);
-		
-		return new ResponseEntity<>(test, HttpStatus.OK);
+		try {
+			
+			if(orderVO==null||orderVO.getClientId()==null||!existClient(orderVO.getClientId())) {
+				String message="Client doesn´t exist with Id="+(orderVO!=null?""+orderVO.getClientId():null);
+				LogManager.getLogger(this.getClass().getName()).error(message);
+				throw new Exception(message);
+			}
+
+///////////////////---------------------------------------------------------------
+			/*
+			 * In this part The CheckOut service call Bill service and get a response
+			 */
+
+			OutBillVO billResponse = restTemplate.postForObject(APIEnum.BILL_API.getUrlApi(), orderVO, OutBillVO.class);
+
+///////////////////---------------------------------------------------------------
+
+			/*
+			 * In this part The CheckOut service call Logistic service and get a response
+			 */
+
+			OutLogisticVO logisticResponse = restTemplate.postForObject(APIEnum.LOGISTIC_API.getUrlApi(), orderVO,
+					OutLogisticVO.class);
+
+///////////////////// ---------------------------------------------------------------
+
+			LogManager.getLogger(this.getClass().getName()).info("Bill response:" + billResponse.getMensaje());
+			LogManager.getLogger(this.getClass().getName()).info("Logistic response:" + logisticResponse.getMensaje());
+
+			/* CheckOut Ok */
+
+			checkOut.setMensaje("Correct CheckOut");
+			checkOut.setBillOut(billResponse);
+			checkOut.setLogisticOut(logisticResponse);
+			checkOut.setProcesoOk(true);
+
+			return new ResponseEntity<>(checkOut, HttpStatus.OK);
+		} catch (Exception e) {
+			checkOut.setMensaje("CheckOut process fail:" + e.getMessage());
+			checkOut.setProcesoOk(false);
+			LogManager.getLogger(this.getClass().getName()).error("Check out process fail:"+ e.getMessage());
+			return new ResponseEntity<>(checkOut, HttpStatus.BAD_REQUEST);
+		}
 	}
-	
+
 }

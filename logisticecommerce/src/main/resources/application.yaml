@@ -1,12 +1,12 @@
 spring:
   datasource: 
-    url: jdbc:postgresql://localhost:5432/ecommercebd
-    username: ecommerce
-    password: ecommerce
+    url: jdbc:postgresql://localhost:5432/ecommercelogisticbd
+    username: ecommercelogistic
+    password: ecommercelogistic
     driver-class-name: org.postgresql.Driver
   jpa: 
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: validate
     show-sql: true
     generate-ddl: true
 server:
