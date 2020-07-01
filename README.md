@@ -55,6 +55,13 @@ If you change something in the code and you need to compile and see this changes
 docker-compose rm -f
 docker-compose up --build -d
 ```
+## Prerequisites
+
+First you need to install :
+
+1) Docker and docker-compose (Docker-compose is into docker installation)
+2) Jdk 8
+3) Git
 
 ## Installation
 
@@ -65,7 +72,7 @@ The package can be installed via docker-compose functionality, first download th
 git clone git@github.com:proyectos-mario/hiberus-ecommerce.git
 
 ```
-2) Execute docker-compose
+2) Execute docker-compose in the /hiberus-ecommerce folder
 
 ```
 docker-compose up --build -d
