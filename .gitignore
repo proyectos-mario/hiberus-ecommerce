@@ -30,5 +30,8 @@ build/
 ### VS Code ###
 .vscode/
 
+## react
+**/node_modules/
+
 ##local
 /workspace
