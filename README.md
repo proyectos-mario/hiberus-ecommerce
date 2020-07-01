@@ -53,9 +53,9 @@ docker-compose rm -f
 
 Once the project had been installed,  This project generate swagger documentation in this links:
 
-- ![http://localhost:7002/swagger-ui.html](http://localhost:7002/swagger-ui.html). CheckOut documentation
-- ![http://localhost:7000/swagger-ui.html](http://localhost:7000/swagger-ui.html). Billing documentation
-- ![http://localhost:7001/swagger-ui.html](http://localhost:7001/swagger-ui.html). Logistic documentation
+- [http://localhost:7002/swagger-ui.html](http://localhost:7002/swagger-ui.html). CheckOut documentation
+- [http://localhost:7000/swagger-ui.html](http://localhost:7000/swagger-ui.html). Billing documentation
+- [http://localhost:7001/swagger-ui.html](http://localhost:7001/swagger-ui.html). Logistic documentation
 
 # How this work
 
@@ -73,7 +73,7 @@ With this you can get rest services or connect local to databases
 
 ## Abstract design
 
-![alt text](https://github.com/proyectos-mario/hiberus-ecommerce/blob/master/images/designtest.png?raw=true)
+![alt text](https://github.com/proyectos-mario/hiberus-ecommerce/blob/master/images/design.png?raw=true)
 
 ## CheckOut Service
 
