@@ -52,6 +52,7 @@ This backend solution are implemented with Java spring boot , spring data and ma
 If you change something in the code and you need to compile and see this changes, you have to execute this steps:
 
 ```
+docker-compose stop
 docker-compose rm -f
 docker-compose up --build -d
 ```
@@ -90,6 +91,7 @@ And you should be see something like this:
 4) If you need to stop the process execute:
 
 ```
+docker-compose stop
 docker-compose rm -f
 ```
 

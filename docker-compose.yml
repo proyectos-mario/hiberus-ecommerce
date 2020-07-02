@@ -1,6 +1,12 @@
 version: "3.2"
 
 services:
+  serverfrontend:
+    image: hiberus/serverfrontend:0.0.1 
+    build:
+      context: ./frontend-ecommerce
+    ports: 
+      - "3000:80" 
   servicecheckout:
     image: hiberus/servicecheckout:1.0.0
     build:
