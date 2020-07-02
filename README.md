@@ -147,6 +147,42 @@ I develop a simple React.js interface to test rest sercives, and you can acces w
 
 You put data in the input elements and in the top of the page appears the history of orders that show the result of all checkout process.
 
+## Database local access
+
+I tell you that I expose ports to be used in the local machine for local test , so for database you can access locally.
+
+Those are de credentials and access with your Postgres client:
+
+* CheckOut database (Client table in schema ecommerce)
+
+```
+server: localhost
+port: 6002
+user: ecommerce
+password: ecommerce
+database: ecommercebd
+```
+
+* Bill database (Product table in schema ecommercebill)
+
+```
+server: localhost
+port: 6000
+user: ecommercebill
+password: ecommercebill
+database: ecommercebillbd
+```
+
+* Logistic database (Orders table in schema ecommercebill and sequence called “order_id_seq”)
+
+```
+server: localhost
+port: 6001
+user: ecommercelogistic
+password: ecommercelogistic
+database: ecommercelogisticbd
+```
+
 ## Before to start
 
 This project connects with database elements like products or clients and gets elements like orders, for that reason, I built 3 services to test each one of them. 
