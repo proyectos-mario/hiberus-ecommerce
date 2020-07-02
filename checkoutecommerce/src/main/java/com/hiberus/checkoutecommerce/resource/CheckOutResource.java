@@ -111,12 +111,12 @@ public class CheckOutResource {
 			checkOut.setMessage("Correct CheckOut");
 			checkOut.setBillOut(billResponse);
 			checkOut.setLogisticOut(logisticResponse);
-			checkOut.setProcesoOk(true);
+			checkOut.setProcessOk(true);
 
 			return new ResponseEntity<>(checkOut, HttpStatus.OK);
 		} catch (Exception e) {
 			checkOut.setMessage("CheckOut process fail:" + e.getMessage());
-			checkOut.setProcesoOk(false);
+			checkOut.setProcessOk(false);
 			LogManager.getLogger(this.getClass().getName()).error("Check out process fail:"+ e.getMessage());
 			return new ResponseEntity<>(checkOut, HttpStatus.BAD_REQUEST);
 		}

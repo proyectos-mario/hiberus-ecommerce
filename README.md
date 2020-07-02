@@ -1,10 +1,14 @@
-# Ecommerce application for Hiberus
+# E-Commerce Project
 
 Welcome to e-commerce simulate for hiberus Test for Java Microservices.
 
-## Technologies and tools:
+## Technologies and tools
 
-I use this technologies for build the project because Spring boot and docker are one of the best solutions for microservices system, because offer well support,well security also Java has a lot of experienced in applications and docker works very well with containers and it can be adapted in more complex architecture using tools like kuberentes for charge balanced in services.
+To achieve the goals for Hiberus and give the best possible experience for the customers, I evaluated the available technologies of the market that and I Choose which I considered the best and proper for an e-commerce project.
+
+Taking into account the wide experience of Spring boot and Docker technologies in the market, currently, they are the most recommended solutions for microservices systems, their main advantages are related to security infrastructure and support service.  Java is one of the most used technologies on applications development, on the other hand, Docker has presented a good performance with containers and it can be adapted in more complex architecture using tools like kuberentes for load balancing in services.
+
+Below are related in detail the technologies that I selected for this project:
 
 - Java version "1.8.0_241"
 - Spring tools suite 4 (IDE)
@@ -23,33 +27,46 @@ I use this technologies for build the project because Spring boot and docker are
 
 ![alt text](https://github.com/proyectos-mario/hiberus-ecommerce/blob/master/images/design.png?raw=true)
 
-In this design, I create a principal service called checkoutservice, this service start the process and later call billservice that compute the sum of product values per quantity. Later Checkout process call logisticservice that save in order database table the sum of billservice, address info, order date, client id, generation date (Date of execution of service) and a number or sent order, this sent order number is given to database sequence called order_id_seq. This service return a OutLogisticVO object to checkoutservice and later this service return a OutCheckOutVO object and finish the process.
+For this phase, I created a main service called “check out service”, this service starts the process, and then it calls the “bill service” which multiply each quantity by the corresponding value of the product to obtain the total value through the sum of all the values.
+After that, “checkout service” calls “logistic servic” to save the following information in “order database table”: 
 
-In this project is used 6 containers isolated and connected to docker network provided and configured for docker-compose technology. I exposed ports to local machine for testing purposes.
+•	Sum of billservice.
+•	Address info.
+•	order date.
+•	Client id
+•	Generation date (Date of execution of service) 
+•	Sent number.
+
+The “sent number” is obtained through the sequence of the database called “order_id_seq”
+
+Finally the “logistic service” returns an “OutLogisticVO” object to “checkout service” and then the “checkout service” returns an ¨OutCheckOutVO¨ object and the process finishes.
+For the development of this Project, six isolated containers were used which were connected through a network provided and configured by docker-compose technology. For test purposes, the services ports were exposed to local machine.
 
 
+ ## Microservices:
 
- ## This project has six Microservices:
-
-- **CheckOutService:**  (./checkoutecommerce folder): This service begin the process and call Bill service and Logistic service
-- **CheckOutService Database:** This services is a postgres database that include Clients info
-- **BillService:** (./billecommerce folder): This service receive Date, ClientId, Products info and get sum of products values
-- **BillService Database:** : This services is another postgres database that include products info. (This database is different that Checkout Database)
-- **Logisticservice:** (./logisticecommerce): This services is responsible of generation of sent order. It creates a number Id and return this value in an OutLogisticVO object, also create a register in Order table with the Sent order info.
-- **LogisticService Database:**: This services is another postgres database that include order info. (This database is different that Checkout Database) and generate an Order Id with ecommercelogistic.order_id_seq database sequence
+This project has six Microservices:
+**CheckOutService:** (./checkoutecommerce folder): This service starts the process and calls “Bill service” and “Logistic service”
+**CheckOutService Database:** This service is a “postgres database” that includes Clients information.
+**BillService: (./billecommerce folder): This service receives Date, ClientId, Products information and get sum of products values.
+**BillService Database:** This service is another “postgres database” that includes products information. (This database is different that Checkout Database)
+**Logisticservice:** (./logisticecommerce): This service is responsible to generate the "sent order". It creates a number Id and returns this value in an OutLogisticVO object, finally it creates a register in the “Order table” with the ¨Sent order” information.
+**LogisticService Database:** This service is another “Postgres database” that includes order information. (This database is different that Checkout Database). It generates an Order Id with the following database sequence:
+order_id_seq 
+**Frontend** Like a plus I added a page developed in React to test the process and show results.
 
 # Java Projects
 
-This backend solution are implemented with Java spring boot , spring data and maven. You can open this projects with Spring tools suite 4 and import this maven projects if you need to see the code:
-
-1) checkoutecommerce
-2) logisticecommerce
-3) billecommerce
-4) voecommerce
+This backend solution was implemented with Java Spring boot, spring data, and maven.
+You can open these maven projects with Spring tools suite 4 :
+1.	Checkoutecommerce.
+2.	logisticecommerce
+3.	billecommerce
+4.	voecommerce
 
 ![alt text](https://github.com/proyectos-mario/hiberus-ecommerce/blob/master/images/designJava.png?raw=true)
 
-If you change something in the code and you need to compile and see this changes, you have to execute this steps:
+If you change something in the code and you need to compile and see this changes, you should execute the following steps:
 
 ```
 docker-compose stop
@@ -107,7 +124,7 @@ Once the project has been installed,  This project generate swagger documentatio
 
 ## localhost public urls (Why?)
 
-That you can see, I use localhost for all services. That is because willfully, I expose APIs in localmachine for testing purposes for API services and database services, but internally microservices use its own network for connect its containers  thanks to Docker and Docker-compose technology. A easy test to see it,  is delete expose port in docker-compose file and with this you can put private one or various microservices. It can see in docker-compose file like this
+As you can see, I used localhost for all services, due to I exposed willfully the  APIs and database services in localmachine for test purposes, but internally the microservices use their own network to connect their containers thanks to Docker and Docker-compose technology. An easy way to test is to  delete the exposed ports in docker-compose file. It can be reviewed in docker-compose file like this
 
 ```
 ...
@@ -115,13 +132,16 @@ ports:
       - "7000:7000" 
 ...
 ```
-With this you can get rest services or connect local to databases
+With this, you can get “rest services” or local databases conections.
 
 # Start to work!!!
 
 ## Before to start
 
-This project connects with database elements like products or clients and get elements like orders, so I build 3 services to help you to get data to test this service. This get rest services are:
+This project connects with database elements like products or clients and gets elements like orders, for that reason, I built 3 services to test each one of them. 
+
+These “rest services” are:
+
 
 + [http://localhost:7002/api/getClients](http://localhost:7002/api/getClients). Client List
 + [http://localhost:7000/api/getProducts](http://localhost:7000/api/getProducts). Product List
@@ -131,7 +151,7 @@ This project connects with database elements like products or clients and get el
 ## Checkout Service
 
 
-First, you should run this post service in **Postman** or another rest tool for http://localhost:7002/api/checkout and put in the body something like this:
+First, you should run this post service in Postman or another rest tool for http://localhost:7002/api/checkout and put in the body something like this:
 
 ```json
 {
@@ -157,20 +177,20 @@ When this process is executed you get a response like this:
 
 ```json
 {
-    "procesoOk": true,
+    "processOk": true,
     "message": "Correct CheckOut",
     "logisticOut": {
-        "procesoOk": true,
+        "processOk": true,
         "message": "Logistic out ok",
         "numberOrder": 1
     },
     "billOut": {
-        "procesoOk": true,
+        "processOk": true,
         "message": "Bill process pass ok",
         "sum": 801.9000000000001
     }
 }
 ```
-As you can see this json return a procesoOk=true if all procedures are ok also return the bill response with billOut object and logistic response with logisticOut object. If the process fail, the procesoOk = false and show message error in "message"
-
-
+As you can see this json returns a process Ok=true if all procedures are ok.
+Also it returns the bill response with billOut object and logistic response with logisticOut object. 
+If the process fail, the processOk = false and show message error in "message"

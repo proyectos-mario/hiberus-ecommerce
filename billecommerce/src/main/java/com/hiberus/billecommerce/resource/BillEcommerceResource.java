@@ -92,7 +92,7 @@ public class BillEcommerceResource {
 				}
 				billResponse.setSum(sum);
 				billResponse.setMessage("Bill process pass ok");
-				billResponse.setProcesoOk(true);
+				billResponse.setProcessOk(true);
 				LogManager.getLogger(this.getClass().getName()).info("Bill sum process Ok----> Sum=" + sum);
 			} else {
 				throw new Exception("Null order value");
@@ -101,7 +101,7 @@ public class BillEcommerceResource {
 			return new ResponseEntity<>(billResponse, HttpStatus.OK);
 		} catch (Exception e) {
 			billResponse.setMessage("Bill process fail:"+e.getMessage());
-			billResponse.setProcesoOk(false);
+			billResponse.setProcessOk(false);
 			LogManager.getLogger(this.getClass().getName()).error("Bill sum process error");
 			return new ResponseEntity<>(billResponse, HttpStatus.BAD_REQUEST);
 		}

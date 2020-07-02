@@ -9,18 +9,18 @@ public class OutLogisticVO implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private Boolean procesoOk;
+	private Boolean processOk;
 	
 	private String message;
 	
 	private Integer numberOrder;
 
-	public Boolean getProcesoOk() {
-		return procesoOk;
+	public Boolean getProcessOk() {
+		return processOk;
 	}
 
-	public void setProcesoOk(Boolean procesoOk) {
-		this.procesoOk = procesoOk;
+	public void setProcessOk(Boolean processOk) {
+		this.processOk = processOk;
 	}
 
 	public String getMessage() {
