@@ -194,12 +194,9 @@ These “rest services” are:
 + [http://localhost:7000/api/getProducts](http://localhost:7000/api/getProducts). Product List
 + [http://localhost:7001/api/getOrders](http://localhost:7001/api/getOrders). Order List (This service show the result of executions of entire process)
 
-Also you can test twith React.js interface: [http://localhost:3000/](http://localhost:3000/)
-
 ## Checkout Service
 
-
-First, you should run this post service in Postman or another rest tool for http://localhost:7002/api/checkout and put in the body something like this:
+You can test twith React.js interface: [http://localhost:3000/](http://localhost:3000/) or you can run this post service in Postman or another rest tool for http://localhost:7002/api/checkout and put in the body something like this:
 
 ```json
 {
