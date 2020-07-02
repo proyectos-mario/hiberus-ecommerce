@@ -22,6 +22,9 @@ Below are related in detail the technologies that I selected for this project:
 - Git version 2.26.0
 - Postgres Database
 - Postman
+- React 16.13.1
+- Node.js 12
+- Nginx
 
 ## Design
 
@@ -40,12 +43,12 @@ After that, “checkout service” calls “logistic servic” to save the follo
 The “sent number” is obtained through the sequence of the database called “order_id_seq”
 
 Finally the “logistic service” returns an “OutLogisticVO” object to “checkout service” and then the “checkout service” returns an ¨OutCheckOutVO¨ object and the process finishes.
-For the development of this Project, six isolated containers were used which were connected through a network provided and configured by docker-compose technology. For test purposes, the services ports were exposed to local machine.
+For the development of this Project, seven isolated containers were used which were connected through a network provided and configured by docker-compose technology. For test purposes, the services ports were exposed to local machine.
 
 
  ## Microservices:
 
-This project has six Microservices:
+This project has 7 Microservices:
 **CheckOutService:** (./checkoutecommerce folder): This service starts the process and calls “Bill service” and “Logistic service”
 **CheckOutService Database:** This service is a “postgres database” that includes Clients information.
 **BillService: (./billecommerce folder): This service receives Date, ClientId, Products information and get sum of products values.
@@ -96,7 +99,7 @@ git clone git@github.com:proyectos-mario/hiberus-ecommerce.git
 docker-compose up --build -d
 ```
 
-3) You can check if the 6 services are up with this docker command:
+3) You can check if the services are up with this docker command:
 
 ```
 docker ps
@@ -136,6 +139,14 @@ With this, you can get “rest services” or local databases conections.
 
 # Start to work!!!
 
+## FrontEnd to Test complete service
+
+I develop a simple React.js interface to test rest sercives, and you can acces with this url in local machine:
+
+[http://localhost:3000/](http://localhost:3000/)
+
+You put data in the input elements and in the top of the page appears the history of orders that show the result of all checkout process.
+
 ## Before to start
 
 This project connects with database elements like products or clients and gets elements like orders, for that reason, I built 3 services to test each one of them. 
@@ -147,6 +158,7 @@ These “rest services” are:
 + [http://localhost:7000/api/getProducts](http://localhost:7000/api/getProducts). Product List
 + [http://localhost:7001/api/getOrders](http://localhost:7001/api/getOrders). Order List (This service show the result of executions of entire process)
 
+Also you can test twith React.js interface: [http://localhost:3000/](http://localhost:3000/)
 
 ## Checkout Service
 
