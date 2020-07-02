@@ -6,7 +6,7 @@ My personal info is:
 
 * Name: **Mario Esteban Ortega Garcés**
 * Mail: **maes0186@gmail.com**
-* LinkedIn profile: **[www.linkedin.com/in/maes0186](www.linkedin.com/in/maes0186)** 
+* LinkedIn profile: **[https://www.linkedin.com/in/maes0186/](https://www.linkedin.com/in/maes0186/)** 
 
 
 ## Technologies and tools
