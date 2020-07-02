@@ -51,7 +51,7 @@ For the development of this Project, seven isolated containers were used which w
 This project has 7 Microservices:
 * **CheckOutService:** (./checkoutecommerce folder): This service starts the process and calls “Bill service” and “Logistic service”
 * **CheckOutService Database:** This service is a “postgres database” that includes Clients information.
-**BillService: (./billecommerce folder): This service receives Date, ClientId, Products information and get sum of products values.
+* **BillService: (./billecommerce folder): This service receives Date, ClientId, Products information and get sum of products values.
 * **BillService Database:** This service is another “postgres database” that includes products information. (This database is different that Checkout Database)
 * **Logisticservice:** (./logisticecommerce): This service is responsible to generate the "sent order". It creates a number Id and returns this value in an OutLogisticVO object, finally it creates a register in the “Order table” with the ¨Sent order” information.
 * **LogisticService Database:** This service is another “Postgres database” that includes order information. (This database is different that Checkout Database). It generates an Order Id with the following database sequence:
