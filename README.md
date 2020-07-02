@@ -2,6 +2,13 @@
 
 Welcome to e-commerce simulate for hiberus Test for Java Microservices.
 
+My personal info is:
+
+* Name: **Mario Esteban Ortega Garcés**
+* Mail: **maes0186@gmail.com**
+* LinkedIn profile: **[www.linkedin.com/in/maes0186](www.linkedin.com/in/maes0186)** 
+
+
 ## Technologies and tools
 
 To achieve the goals for Hiberus and give the best possible experience for the customers, I evaluated the available technologies of the market that and I Choose which I considered the best and proper for an e-commerce project.
