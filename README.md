@@ -147,11 +147,11 @@ I develop a simple React.js interface to test rest sercives, and you can acces w
 
 You put data in the input elements and in the top of the page appears the history of orders that show the result of all checkout process.
 
-## Database local access
+## Database local acces
 
-I tell you that I expose ports to be used in the local machine for local test , so for database you can access locally.
+I tell you that I expose ports to be used in the local machine for local test , so for database you can acces locally.
 
-Those are de credentials and access with your Postgres client:
+Those are de credentials and acces with your Postgres client:
 
 * CheckOut database (Client table in schema ecommerce)
 
