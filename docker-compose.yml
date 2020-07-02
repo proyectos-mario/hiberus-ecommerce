@@ -7,6 +7,8 @@ services:
       context: ./frontend-ecommerce
     ports: 
       - "3000:80" 
+    depends_on:
+      - servicecheckout  
   servicecheckout:
     image: hiberus/servicecheckout:1.0.0
     build:

@@ -67,6 +67,7 @@ function App() {
   const [products, setProducts] = useState([]);
   const [orders, setOrders] = useState([]);
   const [resultCHO, setResultCHO] = useState({});
+  const[loading,setLoading]=useState("");
   const [formRegister, setFormRegister] = useState({
     "products": {}
   });
@@ -150,12 +151,15 @@ function App() {
   }
 
   useEffect(() => {
+    setLoading("ok")
     getClientsAPI()
       .then(([response, status]) => {
         return response.json();
       })
       .then((responseClient) => {
         setClients(responseClient)
+      }).catch(e=>{
+        setLoading("error");
       });
   }, []);
 
@@ -180,61 +184,14 @@ function App() {
   }, []);
 
   return (
-    (clients.length === 0 || products.length === 0) ? <h1>Loading....</h1> :
+    (clients.length === 0 || products.length === 0) ? 
+    loading==="error"?<h1>The projects have not been loaded for docker-compose, please try again in a few seconds and press F5 or refesh your browser. Thanks</h1> :
+    <h1>Loading...</h1> 
+    :
       <form className="App" onSubmit={onSubmitForm}>
         <header className="header">
           <h1>Test page for e-commerce simulate</h1>
         </header>
-        <section className="clientId">
-          <h1>Client</h1>
-          <select onChange={onChangeInput}
-            className="selectItem" id='clientId'
-            required
-          >
-            <option value="">
-              --Seleccione un elemento--
-                                    </option>
-            {
-              clients.map((data, i) =>
-                <option value={data.personaId} key={i}>{data.personaId + "--" + data.name + " " + data.lastName}</option>)
-            }
-
-          </select>
-        </section>
-        <section className="products" onChange={onChangeInput}>
-          <h1>Products</h1>
-
-          {
-            products.map((data, i) =>
-              <div key={"infoProd" + i} className="infoProducts">
-                <div className="elementProduct">
-                  <input type="checkbox" id={"product" + data.productId} onChange={onChangeInput} />
-                  <label htmlFor={"product" + data.productId}>{data.productId + "-" + data.name}</label>
-                </div>
-                <input className="elementProduct" type="number" placeholder="Cost" id={"textVal" + data.productId} onChange={onChangeInput} />
-                <input className="elementProduct" type="number" placeholder="Quantity" id={"textQuan" + data.productId} onChange={onChangeInput} />
-              </div>
-            )
-          }
-
-        </section>
-        <section className="otherinfo">
-          <h1>Aditional information</h1>
-
-          <div className="otherInfoData">
-            <label htmlFor="date">Date:</label>
-            <input type="date" id="date" onChange={onChangeInput} required />
-          </div>
-          <div className="otherInfoData">
-            <label htmlFor="direction">Adress:</label>
-            <input type="text" placeholder="Address" id="direction" onChange={onChangeInput} required />
-          </div>
-
-        </section>
-        <section className="actions">
-          <h1>Actions</h1>
-          <button className="execute">Execute checkOut Service</button>
-        </section>
         {
           orders.length !== 0 && <section className="historyOrders">
             <h1>History orders</h1>
@@ -270,6 +227,56 @@ function App() {
           </section>
         }
 
+        <section className="clientId">
+          <h1>Client</h1>
+          <select onChange={onChangeInput}
+            className="selectItem" id='clientId'
+            required
+          >
+            <option value="">
+              --Seleccione un elemento--
+                                    </option>
+            {
+              clients.map((data, i) =>
+                <option value={data.personaId} key={i}>{data.personaId + "--" + data.name + " " + data.lastName}</option>)
+            }
+
+          </select>
+        </section>
+        <section className="products" onChange={onChangeInput}>
+          <h1>Products</h1>
+
+          {
+            products.map((data, i) =>
+              <div key={"infoProd" + i} className="infoProducts">
+                <div className="elementProduct">
+                  <input type="checkbox" id={"product" + data.productId} onChange={onChangeInput} />
+                  <label htmlFor={"product" + data.productId}>{data.productId + "-" + data.name}</label>
+                </div>
+                <input className="elementProduct" min="0" step=".01" type="number" placeholder="Cost" id={"textVal" + data.productId} onChange={onChangeInput} />
+                <input className="elementProduct" min="0" type="number" placeholder="Quantity" id={"textQuan" + data.productId} onChange={onChangeInput} />
+              </div>
+            )
+          }
+
+        </section>
+        <section className="otherinfo">
+          <h1>Aditional information</h1>
+
+          <div className="otherInfoData">
+            <label htmlFor="date">Date:</label>
+            <input type="date" id="date" onChange={onChangeInput} required />
+          </div>
+          <div className="otherInfoData">
+            <label htmlFor="direction">Adress:</label>
+            <input type="text" placeholder="Address" id="direction" onChange={onChangeInput} required />
+          </div>
+
+        </section>
+        <section className="actions">
+          <h1>Actions</h1>
+          <button className="execute">Execute checkOut Service</button>
+        </section>
 
       </form>
   );
