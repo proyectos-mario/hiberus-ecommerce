@@ -10,7 +10,7 @@ Taking into account the wide experience of Spring boot and Docker technologies i
 
 Below are related in detail the technologies that I selected for this project:
 
-- Java version "1.8.0_241"
+- Java version **1.8.0_241**
 - Spring tools suite 4 (IDE)
 - Spring boot 2.3.1
 - Spring Data
@@ -30,31 +30,31 @@ Below are related in detail the technologies that I selected for this project:
 
 ![alt text](https://github.com/proyectos-mario/hiberus-ecommerce/blob/master/images/design.png?raw=true)
 
-For this phase, I created a main service called “check out service”, this service starts the process, and then it calls the “bill service” which multiply each quantity by the corresponding value of the product to obtain the total value through the sum of all the values.
-After that, “checkout service” calls “logistic servic” to save the following information in “order database table”: 
+For this phase, I created a main service called **check out service**, this service starts the process, and then it calls the **bill service** which multiply each quantity by the corresponding value of the product to obtain the total value through the sum of all the values.
+After that, **checkout service** calls **logistic servic** to save the following information in **order database table**: 
 
-•	Sum of billservice.
-•	Address info.
-•	order date.
-•	Client id
-•	Generation date (Date of execution of service) 
-•	Sent number.
+* Sum of billservice.
+* Address info.
+* Order date.
+* Client id
+* Generation date (Date of execution of service) 
+* Sent number.
 
-The “sent number” is obtained through the sequence of the database called “order_id_seq”
+The **sent number** is obtained through the sequence of the database called **order_id_seq**
 
-Finally the “logistic service” returns an “OutLogisticVO” object to “checkout service” and then the “checkout service” returns an ¨OutCheckOutVO¨ object and the process finishes.
+Finally the **logistic service** returns an **OutLogisticVO** object to **checkout service** and then the **checkout service** returns an **OutCheckOutVO** object and the process finishes.
 For the development of this Project, seven isolated containers were used which were connected through a network provided and configured by docker-compose technology. For test purposes, the services ports were exposed to local machine.
 
 
  ## Microservices:
 
 This project has 7 Microservices:
-**CheckOutService:** (./checkoutecommerce folder): This service starts the process and calls “Bill service” and “Logistic service”
-**CheckOutService Database:** This service is a “postgres database” that includes Clients information.
+**CheckOutService:** (./checkoutecommerce folder): This service starts the process and calls **Bill service** and **Logistic service**
+**CheckOutService Database:** This service is a **postgres database** that includes Clients information.
 **BillService: (./billecommerce folder): This service receives Date, ClientId, Products information and get sum of products values.
-**BillService Database:** This service is another “postgres database” that includes products information. (This database is different that Checkout Database)
-**Logisticservice:** (./logisticecommerce): This service is responsible to generate the "sent order". It creates a number Id and returns this value in an OutLogisticVO object, finally it creates a register in the “Order table” with the ¨Sent order” information.
-**LogisticService Database:** This service is another “Postgres database” that includes order information. (This database is different that Checkout Database). It generates an Order Id with the following database sequence:
+**BillService Database:** This service is another **postgres database** that includes products information. (This database is different that Checkout Database)
+**Logisticservice:** (./logisticecommerce): This service is responsible to generate the **sent order**. It creates a number Id and returns this value in an OutLogisticVO object, finally it creates a register in the **Order table** with the **Sent order** information.
+**LogisticService Database:** This service is another **Postgres database** that includes order information. (This database is different that Checkout Database). It generates an Order Id with the following database sequence:
 order_id_seq 
 **Frontend** Like a plus I added a page developed in React to test the process and show results.
 
@@ -132,10 +132,10 @@ As you can see, I used localhost for all services, due to I exposed willfully th
 ```
 ...
 ports: 
-      - "7000:7000" 
+      - **7000:7000** 
 ...
 ```
-With this, you can get “rest services” or local databases conections.
+With this, you can get **rest services** or local databases conections.
 
 # Start to work!!!
 
@@ -173,7 +173,7 @@ password: ecommercebill
 database: ecommercebillbd
 ```
 
-* Logistic database (Orders table in schema ecommercebill and sequence called “order_id_seq”)
+* Logistic database (Orders table in schema ecommercebill and sequence called **order_id_seq**)
 
 ```
 server: localhost
@@ -187,7 +187,7 @@ database: ecommercelogisticbd
 
 This project connects with database elements like products or clients and gets elements like orders, for that reason, I built 3 services to test each one of them. 
 
-These “rest services” are:
+These **rest services** are:
 
 
 + [http://localhost:7002/api/getClients](http://localhost:7002/api/getClients). Client List
@@ -203,19 +203,19 @@ First, you should run this post service in Postman or another rest tool for http
 
 ```json
 {
-  "clientId": 1,
-  "date": "2020-07-01T00:19:43.509Z",
-  "direction": "Carrera 11 # 140 -52",
-  "products": [
+  **clientId**: 1,
+  **date**: **2020-07-01T00:19:43.509Z**,
+  **direction**: **Carrera 11 # 140 -52**,
+  **products**: [
     {
-      "cost": 100.5,
-      "id": 1,
-      "quantity": 2
+      **cost**: 100.5,
+      **id**: 1,
+      **quantity**: 2
     },
     {
-      "cost": 200.3,
-      "id": 2,
-      "quantity": 3
+      **cost**: 200.3,
+      **id**: 2,
+      **quantity**: 3
     }
   ]
 } 
@@ -225,20 +225,20 @@ When this process is executed you get a response like this:
 
 ```json
 {
-    "processOk": true,
-    "message": "Correct CheckOut",
-    "logisticOut": {
-        "processOk": true,
-        "message": "Logistic out ok",
-        "numberOrder": 1
+    **processOk**: true,
+    **message**: **Correct CheckOut**,
+    **logisticOut**: {
+        **processOk**: true,
+        **message**: **Logistic out ok**,
+        **numberOrder**: 1
     },
-    "billOut": {
-        "processOk": true,
-        "message": "Bill process pass ok",
-        "sum": 801.9000000000001
+    **billOut**: {
+        **processOk**: true,
+        **message**: **Bill process pass ok**,
+        **sum**: 801.9000000000001
     }
 }
 ```
 As you can see this json returns a process Ok=true if all procedures are ok.
 Also it returns the bill response with billOut object and logistic response with logisticOut object. 
-If the process fail, the processOk = false and show message error in "message"
+If the process fail, the processOk = false and show message error in **message**
