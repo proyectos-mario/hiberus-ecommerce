@@ -1,17 +1,18 @@
 # E-Commerce Project
 
-Welcome to e-commerce simulate for hiberus Test for Java Microservices.
+Welcome to e-commerce simulate a Java Microservices project with docker and docker-compose.
 
 My personal info is:
 
 * Name: **Mario Esteban Ortega Garcés**
-* Mail: **maes0186@gmail.com**
+* Mail: **mario.esteban.ortega@gmail.com**
+* Portfolio: **https://marioestebanortega.github.io/portafolio/**
 * LinkedIn profile: **[https://www.linkedin.com/in/maes0186/](https://www.linkedin.com/in/maes0186/)** 
 
 
 ## Technologies and tools
 
-To achieve the goals for Hiberus and give the best possible experience for the customers, I evaluated the available technologies of the market that and I Choose which I considered the best and proper for an e-commerce project.
+Give the best possible experience for the customers, I evaluated the available technologies of the market that and I Choose which I considered the best and proper for an e-commerce project.
 
 Taking into account the wide experience of Spring boot and Docker technologies in the market, currently, they are the most recommended solutions for microservices systems, their main advantages are related to security infrastructure and support service.  Java is one of the most used technologies on applications development, on the other hand, Docker has presented a good performance with containers and it can be adapted in more complex architecture using tools like kuberentes for load balancing in services.
 
